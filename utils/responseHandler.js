@@ -3,7 +3,7 @@ import { Product } from "../models/Product.js";
 function mapToProduct(item) {
   // Simple heuristic to verify if the object looks like a product before mapping
   if (item && typeof item === "object" && (item.id !== undefined || item.title)) {
-    return new Product(item);
+    return new Product({ ...item });
   }
   return item;
 }
