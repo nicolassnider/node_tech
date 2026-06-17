@@ -8,31 +8,40 @@ import {
   doc,
 } from "firebase/firestore";
 
-const COLLECTION = "products";
+export class ProductModel {
+  constructor() {
+    this.collectionName = "products";
+  }
 
-export const fetchAllProducts = async () => {
-  const snapshot = await getDocs(collection(db, COLLECTION));
-  return snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
-};
+  async fetchAllProducts() {
+    console.info(`[DB] Consultando todos los productos en la colección ${this.collectionName}`);
+    const snapshot = await getDocs(collection(db, this.collectionName));
+    return snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+  }
 
-export const fetchProductById = async (id) => {
-  const docRef = doc(db, COLLECTION, id);
-  const snapshot = await getDoc(docRef);
+  async fetchProductById(id) {
+    console.info(`[DB] Buscando producto con ID: ${id}`);
+    const docRef = doc(db, this.collectionName, id);
+    const snapshot = await getDoc(docRef);
 
-  if (!snapshot.exists()) return null;
+    if (!snapshot.exists()) return null;
 
-  return { id: snapshot.id, ...snapshot.data() };
-};
+    return { id: snapshot.id, ...snapshot.data() };
+  }
 
-export const insertProduct = async (data) => {
-  const docRef = await addDoc(collection(db, COLLECTION), data);
-  return { id: docRef.id, ...data };
-};
+  async insertProduct(data) {
+    console.info(`[DB] Insertando nuevo producto`);
+    const docRef = await addDoc(collection(db, this.collectionName), data);
+    return { id: docRef.id, ...data };
+  }
 
-export const removeProduct = async (id) => {
-  const docRef = doc(db, COLLECTION, id);
-  await deleteDoc(docRef);
-};
+  async removeProduct(id) {
+    console.info(`[DB] Eliminando producto con ID: ${id}`);
+    const docRef = doc(db, this.collectionName, id);
+    await deleteDoc(docRef);
+  }
+}
+
