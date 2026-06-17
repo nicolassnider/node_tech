@@ -22,6 +22,9 @@ app.use((req, res, next) => {
 });
 
 // Rutas
+app.get("/", (req, res) => {
+  res.json({ message: "Bienvenido a la API de E-Commerce", status: "online" });
+});
 app.use("/api/products", productRoutes);
 app.use("/auth", authRoutes);
 
