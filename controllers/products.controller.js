@@ -1,71 +1,41 @@
-import {
-  getAllProducts,
-  getProductById as getProductByIdService,
-  createProduct as createProductService,
-  deleteProduct as deleteProductService,
-} from "../services/products.service.js";
 import { PRODUCT_MESSAGES } from "../config/messages.js";
+import { asyncHandler } from "../middlewares/asyncHandler.js";
 
-export const getProducts = async (req, res) => {
-  try {
-    const products = await getAllProducts();
-    res.status(200).json(products);
-  } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: PRODUCT_MESSAGES.GET_PRODUCTS_ERROR,
-        error: error.message,
-      });
+export class ProductController {
+  constructor(productService) {
+    this.productService = productService;
   }
-};
 
-export const getProductById = async (req, res) => {
-  try {
+  getProducts = asyncHandler(async (req, res) => {
+    const products = await this.productService.getAllProducts();
+    res.status(200).json(products);
+  });
+
+  getProductById = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const product = await getProductByIdService(id);
+    const product = await this.productService.getProductById(id);
 
     if (!product) {
-      return res
-        .status(404)
-        .json({ message: PRODUCT_MESSAGES.NOT_FOUND(id) });
+      throw new Error(PRODUCT_MESSAGES.NOT_FOUND(id));
     }
 
     res.status(200).json(product);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: PRODUCT_MESSAGES.GET_PRODUCT_ERROR, error: error.message });
-  }
-};
+  });
 
-export const createProduct = async (req, res) => {
-  try {
+  createProduct = asyncHandler(async (req, res) => {
     const data = req.body;
 
     if (!data || Object.keys(data).length === 0) {
-      return res.status(400).json({ message: PRODUCT_MESSAGES.BODY_EMPTY });
+      throw new Error(PRODUCT_MESSAGES.BODY_EMPTY);
     }
 
-    const newProduct = await createProductService(data);
+    const newProduct = await this.productService.createProduct(data);
     res.status(201).json(newProduct);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: PRODUCT_MESSAGES.CREATE_PRODUCT_ERROR, error: error.message });
-  }
-};
+  });
 
-export const deleteProduct = async (req, res) => {
-  try {
+  deleteProduct = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    await deleteProductService(id);
-    res
-      .status(200)
-      .json({ message: PRODUCT_MESSAGES.DELETE_SUCCESS(id) });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: PRODUCT_MESSAGES.DELETE_PRODUCT_ERROR, error: error.message });
-  }
-};
+    await this.productService.deleteProduct(id);
+    res.status(200).json({ message: PRODUCT_MESSAGES.DELETE_SUCCESS(id) });
+  });
+}
