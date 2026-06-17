@@ -13,7 +13,7 @@ Los datos se almacenan en la nube utilizando **Firebase Firestore**, garantizand
 - **Base de Datos:** Firebase Firestore
 - **Autenticación:** JSON Web Token (JWT)
 - **Middlewares:** CORS, Body-Parser
-- **Variables de Entorno:** dotenv
+- **Variables de Entorno:** Soporte nativo de Node.js (`--env-file`)
 
 ---
 

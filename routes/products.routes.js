@@ -14,6 +14,7 @@ const productController = new ProductController(productService);
 router.get("/", authMiddleware, productController.getProducts);
 router.get("/:id", authMiddleware, productController.getProductById);
 router.post("/create", authMiddleware, productController.createProduct);
+router.put("/:id", authMiddleware, productController.updateProduct);
 router.delete("/:id", authMiddleware, productController.deleteProduct);
 
 export default router;

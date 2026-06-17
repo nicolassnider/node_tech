@@ -5,6 +5,7 @@ import {
   getDoc,
   addDoc,
   deleteDoc,
+  updateDoc,
   doc,
 } from "firebase/firestore";
 
@@ -42,6 +43,13 @@ export class ProductModel {
     console.info(`[DB] Eliminando producto con ID: ${id}`);
     const docRef = doc(db, this.collectionName, id);
     await deleteDoc(docRef);
+  }
+
+  async modifyProduct(id, data) {
+    console.info(`[DB] Actualizando producto con ID: ${id}`);
+    const docRef = doc(db, this.collectionName, id);
+    await updateDoc(docRef, data);
+    return { id, ...data };
   }
 }
 

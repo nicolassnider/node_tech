@@ -38,4 +38,16 @@ export class ProductController {
     await this.productService.deleteProduct(id);
     res.status(200).json({ message: PRODUCT_MESSAGES.DELETE_SUCCESS(id) });
   });
+
+  updateProduct = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const data = req.body;
+
+    if (!data || Object.keys(data).length === 0) {
+      throw new Error(PRODUCT_MESSAGES.BODY_EMPTY);
+    }
+
+    const updatedProduct = await this.productService.updateProduct(id, data);
+    res.status(200).json(updatedProduct);
+  });
 }

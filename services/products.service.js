@@ -18,5 +18,9 @@ export class ProductService {
   async deleteProduct(id) {
     return await this.productModel.removeProduct(id);
   }
+
+  async updateProduct(id, data) {
+    return await this.productModel.modifyProduct(id, data);
+  }
 }
 
