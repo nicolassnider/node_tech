@@ -1,7 +1,4 @@
-import dotenv from "dotenv";
-
-dotenv.config();
-
+// Configuración centralizada de variables de entorno
 export const settings = {
   PORT: process.env.PORT || 3000,
   JWT_SECRET: process.env.JWT_SECRET,
