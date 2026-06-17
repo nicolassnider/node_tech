@@ -1,17 +1,19 @@
 import { Router } from "express";
-import {
-  getProducts,
-  getProductById,
-  createProduct,
-  deleteProduct,
-} from "../controllers/products.controller.js";
+import { ProductModel } from "../models/product.model.js";
+import { ProductService } from "../services/products.service.js";
+import { ProductController } from "../controllers/products.controller.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get("/", authMiddleware, getProducts);
-router.get("/:id", authMiddleware, getProductById);
-router.post("/create", authMiddleware, createProduct);
-router.delete("/:id", authMiddleware, deleteProduct);
+// Inyección de Dependencias
+const productModel = new ProductModel();
+const productService = new ProductService(productModel);
+const productController = new ProductController(productService);
+
+router.get("/", authMiddleware, productController.getProducts);
+router.get("/:id", authMiddleware, productController.getProductById);
+router.post("/create", authMiddleware, productController.createProduct);
+router.delete("/:id", authMiddleware, productController.deleteProduct);
 
 export default router;
