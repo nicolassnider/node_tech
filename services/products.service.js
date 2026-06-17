@@ -1,22 +1,22 @@
-import {
-  fetchAllProducts,
-  fetchProductById,
-  insertProduct,
-  removeProduct,
-} from "../models/product.model.js";
+export class ProductService {
+  constructor(productModel) {
+    this.productModel = productModel;
+  }
 
-export const getAllProducts = async () => {
-  return await fetchAllProducts();
-};
+  async getAllProducts() {
+    return await this.productModel.fetchAllProducts();
+  }
 
-export const getProductById = async (id) => {
-  return await fetchProductById(id);
-};
+  async getProductById(id) {
+    return await this.productModel.fetchProductById(id);
+  }
 
-export const createProduct = async (data) => {
-  return await insertProduct(data);
-};
+  async createProduct(data) {
+    return await this.productModel.insertProduct(data);
+  }
 
-export const deleteProduct = async (id) => {
-  return await removeProduct(id);
-};
+  async deleteProduct(id) {
+    return await this.productModel.removeProduct(id);
+  }
+}
+
