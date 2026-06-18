@@ -1,12 +1,6 @@
 import jwt from "jsonwebtoken";
-import { settings } from "../config/settings.js";
+import { settings, MOCK_USER } from "../config/settings.js";
 import { AUTH_MESSAGES } from "../config/messages.js";
-
-const mockUser = {
-  email: "admin@tienda.com",
-  password: "password123", 
-  id: "user_123"
-};
 
 export class AuthService {
   async authenticateUser(email, password) {
@@ -15,7 +9,7 @@ export class AuthService {
     // Simulamos operación asíncrona
     await new Promise(resolve => setTimeout(resolve, 500));
 
-    if (email !== mockUser.email || password !== mockUser.password) {
+    if (email !== MOCK_USER.email || password !== MOCK_USER.password) {
       console.warn(`[Auth] Fallo de inicio de sesión para: ${email} - Credenciales inválidas`);
       throw new Error(AUTH_MESSAGES.INVALID_CREDENTIALS);
     }
@@ -24,9 +18,9 @@ export class AuthService {
 
     return new Promise((resolve, reject) => {
       jwt.sign(
-        { id: mockUser.id, email: mockUser.email },
-        settings.JWT_SECRET || "tu_secreto_aqui_para_desarrollo",
-        { expiresIn: "2h" },
+        { id: MOCK_USER.id, email: MOCK_USER.email },
+        settings.JWT_SECRET,
+        { expiresIn: settings.JWT_EXPIRATION },
         (err, token) => {
           if (err) reject(err);
           else resolve(token);
