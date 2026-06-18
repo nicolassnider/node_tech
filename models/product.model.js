@@ -1,4 +1,5 @@
 import { db } from "../config/firebase.js";
+import { COLLECTIONS } from "../config/settings.js";
 import {
   collection,
   getDocs,
@@ -11,7 +12,7 @@ import {
 
 export class ProductModel {
   constructor() {
-    this.collectionName = "products";
+    this.collectionName = COLLECTIONS.PRODUCTS;
   }
 
   async fetchAllProducts() {

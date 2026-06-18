@@ -13,7 +13,7 @@ export const authMiddleware = async (req, res, next) => {
 
     // Verificación asíncrona del token JWT usando Promesas
     const decoded = await new Promise((resolve, reject) => {
-      jwt.verify(token, settings.JWT_SECRET || "tu_secreto_aqui_para_desarrollo", (err, decodedData) => {
+      jwt.verify(token, settings.JWT_SECRET, (err, decodedData) => {
         if (err) reject(err);
         else resolve(decodedData);
       });

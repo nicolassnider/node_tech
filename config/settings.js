@@ -1,7 +1,8 @@
 // Configuración centralizada de variables de entorno
 export const settings = {
   PORT: process.env.PORT || 3000,
-  JWT_SECRET: process.env.JWT_SECRET,
+  JWT_SECRET: process.env.JWT_SECRET || "tu_secreto_aqui_para_desarrollo",
+  JWT_EXPIRATION: "2h",
   firebase: {
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -10,4 +11,14 @@ export const settings = {
     messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
     appId: process.env.FIREBASE_APP_ID,
   },
+};
+
+export const MOCK_USER = {
+  email: "admin@tienda.com",
+  password: "password123", 
+  id: "user_123"
+};
+
+export const COLLECTIONS = {
+  PRODUCTS: "products"
 };

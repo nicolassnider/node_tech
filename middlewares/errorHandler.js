@@ -1,4 +1,4 @@
-import { PRODUCT_MESSAGES, AUTH_MESSAGES } from "../config/messages.js";
+import { PRODUCT_MESSAGES, AUTH_MESSAGES, SERVER_MESSAGES } from "../config/messages.js";
 
 export const errorHandler = (err, req, res, next) => {
   console.error(`[Error] ${req.method} ${req.url} - ${err.message}`);
@@ -24,7 +24,7 @@ export const errorHandler = (err, req, res, next) => {
 
   // Default Fallback
   res.status(500).json({ 
-    message: "Error interno del servidor", 
+    message: SERVER_MESSAGES.INTERNAL_ERROR, 
     error: err.message 
   });
 };

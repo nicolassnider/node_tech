@@ -24,4 +24,13 @@ test('Auth Endpoints - /auth/login', async (t) => {
     assert.strictEqual(response.status, 401);
     assert.ok(response.body.message);
   });
+
+  await t.test('Debería retornar 200 y un token si las credenciales son válidas', async () => {
+    const response = await request(app)
+      .post('/auth/login')
+      .send({ email: 'admin@tienda.com', password: 'password123' });
+      
+    assert.strictEqual(response.status, 200);
+    assert.ok(response.body.token);
+  });
 });
