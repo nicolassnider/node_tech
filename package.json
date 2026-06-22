@@ -1,6 +1,6 @@
 {
   "name": "node_tech",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "API REST para la administración de productos de una tienda oficial. Permite Crear, Leer, Actualizar y Eliminar productos, con autenticación JWT y persistencia en Firestore (Firebase)",
   "license": "ISC",
   "author": "Nicolás Snider",
