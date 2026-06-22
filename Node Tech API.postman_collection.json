@@ -1,0 +1,390 @@
+{
+  "info": {
+    "_postman_id": "f6b0f12e-a0ef-452f-a9f6-2311b63be175",
+    "name": "Node Tech API",
+    "description": "API REST para administración de productos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48764930",
+    "_collection_link": "https://go.postman.co/collection/48764930-f6b0f12e-a0ef-452f-a9f6-2311b63be175?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"admin@tienda.com\",\n    \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get All Products",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All Products",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:3000/api/products",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "products"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "988"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3dc-LUyoxY/URmKk6bPrwnXLD2FzUTU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 17 Jun 2026 23:32:32 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": \"JSCD4y15ixOQMc0c3f1j\",\n        \"description\": \"Teclado mecánico con switches red, ideal para gaming y escritura.\",\n        \"stock\": 80,\n        \"name\": \"Teclado Mecánico RGB\",\n        \"category\": \"Periféricos\",\n        \"price\": 89.9\n    },\n    {\n        \"id\": \"gpqdFlmACr1MvsOOEUWn\",\n        \"description\": \"Monitor curvo ideal para multitarea y gaming inmersivo.\",\n        \"stock\": 15,\n        \"name\": \"Monitor UltraWide 34\\\"\",\n        \"category\": \"Periféricos\",\n        \"price\": 450\n    },\n    {\n        \"id\": \"kNUML0fqfeVSFSGbEgNI\",\n        \"price\": 899.99,\n        \"category\": \"Electrónica\",\n        \"name\": \"Smartphone Galaxy S23\",\n        \"stock\": 50,\n        \"description\": \"Teléfono inteligente con cámara de alta resolución y pantalla AMOLED.\"\n    },\n    {\n        \"id\": \"l3Ha1uuB08lZYVtvVm1o\",\n        \"description\": \"Portátil de alto rendimiento ideal para desarrolladores y diseñadores.\",\n        \"stock\": 20,\n        \"name\": \"Notebook Pro 15\",\n        \"price\": 1299.5,\n        \"category\": \"Computación\"\n    },\n    {\n        \"id\": \"tTZ67qtlhFMKgcsoueIM\",\n        \"description\": \"Auriculares con cancelación de ruido activa y batería de larga duración.\",\n        \"stock\": 100,\n        \"name\": \"Auriculares Inalámbricos SoundMax\",\n        \"category\": \"Audio\",\n        \"price\": 149.99\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Product By ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/products/{{produc_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "products",
+                "{{produc_id}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Product By ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:3000/api/products/{{produc_id}}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "products",
+                    "{{produc_id}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "193"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"c1-xCOBdXgpS4kLpWlQ3d2f3QYQvbw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 17 Jun 2026 23:33:53 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"JSCD4y15ixOQMc0c3f1j\",\n    \"stock\": 80,\n    \"category\": \"Periféricos\",\n    \"description\": \"Teclado mecánico con switches red, ideal para gaming y escritura.\",\n    \"name\": \"Teclado Mecánico RGB\",\n    \"price\": 89.9\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"{{$randomProductName}}\",\n    \"price\": {{$randomPrice}},\n    \"description\": \"{{$randomProductAdjective}}\",\n    \"stock\": {{$randomInt}}\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/products/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "products",
+                "create"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Product",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt_token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"{{$randomProductName}}\",\n    \"price\": {{$randomPrice}},\n    \"description\": \"{{$randomProductAdjective}}\",\n    \"stock\": {{$randomInt}}\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:3000/api/products/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "products",
+                    "create"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "112"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"70-x/7t5rXULSDdFVvu6CsVXg/kc78\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 17 Jun 2026 23:35:07 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"o4vf0kb7YhLG3JjQkOpI\",\n    \"name\": \"Practical Plastic Gloves\",\n    \"price\": 143.06,\n    \"description\": \"Tasty\",\n    \"stock\": 627\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Product",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/products/{{pruduct_id_delete}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "products",
+                "{{pruduct_id_delete}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "jwt_token",
+      "value": "pega_el_token_aqui"
+    }
+  ]
+}
