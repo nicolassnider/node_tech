@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
+import listEndpoints from "express-list-endpoints";
 
 import productRoutes from "./routes/products.routes.js";
 import authRoutes from "./routes/auth.routes.js";
@@ -42,6 +43,9 @@ app.use(errorHandler);
 if (process.env.NODE_ENV !== "test") {
   app.listen(settings.PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${settings.PORT}`);
+    console.log("\n--- Rutas Registradas ---");
+    console.table(listEndpoints(app));
+    console.log("-------------------------\n");
   });
 }
 
