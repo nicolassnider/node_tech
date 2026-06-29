@@ -14,8 +14,8 @@ export const settings = {
 };
 
 export const MOCK_USER = {
-  email: "admin@tienda.com",
-  password: "password123", 
+  email: "admin@gmail.com",
+  password: "123456", 
   id: "user_123"
 };
 

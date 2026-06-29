@@ -28,7 +28,7 @@ test('Auth Endpoints - /auth/login', async (t) => {
   await t.test('Debería retornar 200 y un token si las credenciales son válidas', async () => {
     const response = await request(app)
       .post('/auth/login')
-      .send({ email: 'admin@tienda.com', password: 'password123' });
+      .send({ email: 'admin@gmail.com', password: '123456' });
       
     assert.strictEqual(response.status, 200);
     assert.ok(response.body.token);

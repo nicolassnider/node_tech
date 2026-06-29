@@ -16,9 +16,13 @@ export class AuthService {
 
     console.info(`[Auth] Inicio de sesión exitoso para: ${email}`);
 
+    return this.generateToken({ id: MOCK_USER.id, email: MOCK_USER.email });
+  }
+
+  generateToken(payload) {
     return new Promise((resolve, reject) => {
       jwt.sign(
-        { id: MOCK_USER.id, email: MOCK_USER.email },
+        payload,
         settings.JWT_SECRET,
         { expiresIn: settings.JWT_EXPIRATION },
         (err, token) => {
