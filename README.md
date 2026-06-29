@@ -1,5 +1,9 @@
 # E-Commerce Product Management API
 
+## desplegado en vercel
+
+[Despliegue Vercel](https://node-tech-gray.vercel.app)
+
 Una API RESTful robusta y escalable desarrollada en **Node.js** y **Express** para la gestión del catálogo de productos de una tienda oficial. Permite a los administradores realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre el inventario de manera segura.
 
 Los datos se almacenan en la nube utilizando **Firebase Firestore**, garantizando alta disponibilidad y escalabilidad. Además, cuenta con un sistema de autenticación basado en **JSON Web Tokens (JWT)** para proteger los endpoints sensibles y un manejo integral de errores.
@@ -59,11 +63,13 @@ Antes de comenzar, asegúrate de tener instalado en tu sistema:
 4. **Inicia el servidor**
 
    Para ejecutar el servidor en un entorno de desarrollo (con autorecarga usando nodemon):
+
    ```bash
    npm run dev
    ```
-   
+
    Para ejecutar el servidor en producción:
+
    ```bash
    npm start
    ```
